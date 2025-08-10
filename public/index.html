@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌊 Exploração do Oceano</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Bibliotecas -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.8.0/dist/tf.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+  <!-- Script principal -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="info-box">
+    <h1>Exploração do Oceano</h1>
+    <p  class="description">Mergulhe nas profundezas e descubra criaturas incríveis!</p>
+  </header>
+
+  <div class="ocean-animals">
+    <a href="templates/peixe.html" class="animal">
+      <img src="static/peixe.png" alt="Peixe Azul">
+      <span>Peixe Azul</span>
+    </a>
+    <a href="templates/tartaruga.html" class="animal">
+      <img src="static/tartaruga.png" alt="Tartaruga Marinha">
+      <span>Tartaruga Marinha</span>
+    </a>
+    <a href="templates/viva.html" class="animal">
+      <img src="static/viva.png" alt="Água-viva">
+      <span>Água-viva</span>
+    </a>
+    <a href="templates/golfinho.html" class="animal">
+      <img src="static/golfinho.png" alt="Golfinho">
+      <span>Golfinho</span>
+    </a>
+  </div>
+
+  <div class="btn-container">
+    <button onclick="abrirChatbot()">Abrir Chat-bot</button>
+
+    <!-- Chatbot Dialogflow -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      id="meu-chatbot"
+      intent="WELCOME"
+      chat-title="ChatOcean"
+      agent-id="1866d704-4b53-4598-a3b7-9fa7fcbc7a19"
+      language-code="pt-br"
+      style="display: none;">
+    </df-messenger>
+
+    <!-- NOTE: botão agora sem onclick inline, script.js controla -->
+    <button id="abrirIA">IA de Reconhecimento</button>
+  </div>
+
+  <!-- Modal da câmera (inicialmente escondido) -->
+  <div id="cameraModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      <button id="fecharModal" class="botao-fechar" title="Fechar">❌</button>
+      <h2 class="modal-title">Reconhecimento Facial</h2>
+      <div class="video-wrap">
+        <video id="video" autoplay muted playsinline></video>
+      </div>
+      <div class="controls">
+        <button id="tirarFoto" class="botao-foto" title="Tirar foto">📸</button>
+      </div>
+      <p id="modalStatus" class="modal-status">Aguardando...</p>
+      <canvas id="fotoCanvas" style="display:none;"></canvas>
+    </div>
+  </div>
+
+</body>
+</html>
