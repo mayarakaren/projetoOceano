@@ -98,7 +98,7 @@ tirarFoto.addEventListener('click', async () => {
     formData.append('foto', blob, 'foto.png');
 
     try {
-      const response = await fetch('http://localhost:5000/processar-foto', {
+      const response = await fetch(`${window.location.origin}/processar-foto`, {
         method: 'POST',
         body: formData,
       });
